@@ -14,18 +14,18 @@
      */
 
 
-    $customer['id'] = 'c5f987b9-52da-4358-a425-760262482fc0';
-    $customer['total_orders'] = 0;
-    $customer['total_amount'] = 0;
+    $orders['customer_id'] = 'c5f987b9-52da-4358-a425-760262482fc0';
+    $orders['total_orders'] = 0;
+    $orders['total_amount'] = 0;
 
     //START ALL HERE
     $files = outputFilesGlob($filesPath);
     
     foreach ($files as $singleFilePath){
         $decodedContent = readJsonFile($singleFilePath);
-        $customer = getOrdersByCustomerGUID($customer, $decodedContent);
+        $orders = getOrdersByCustomerGUID($orders, $decodedContent);
     }
-    getOrderTotalsByCustomer($customer);
+    getOrderTotalsByCustomer($orders);
         
 
 
@@ -43,21 +43,21 @@
         return json_decode($content);     
     }
 
-    function getOrdersByCustomerGUID (array $customer, array $decoded_content){
+    function getOrdersByCustomerGUID (array $orders, array $decoded_content){
         foreach ($decoded_content as $stdclass){  
-            if ($stdclass->customer_id === $customer['id']) {
+            if ($stdclass->customer_id === $orders['customer_id']) {
                 echo $stdclass->amount . ' - ' . $stdclass->payment_status . PHP_EOL;
                 if ($stdclass->payment_status === 'confirmed'){
-                    $customer['total_orders']++;
-                    $customer['total_amount'] += $stdclass->amount;                   
+                    $orders['total_orders']++;
+                    $orders['total_amount'] += $stdclass->amount;                   
                 }
             }      
         }
-        return ($customer);
+        return ($orders);
     }
 
-    function getOrderTotalsByCustomer($customer){
-        var_export($customer);
+    function getOrderTotalsByCustomer($orders){
+        var_export($orders);
         echo PHP_EOL; 
     }
 
