@@ -19,6 +19,7 @@
     $orders['total_amount'] = 0;
 
     //START ALL HERE
+    $time_start = microtime(true); 
     $files = outputFilesGlob($filesPath);
     
     foreach ($files as $singleFilePath){
@@ -26,8 +27,11 @@
         $orders = getOrdersByCustomerGUID($orders, $decodedContent);
     }
     getOrderTotalsByCustomer($orders);
-        
-
+    
+    $time_end = microtime(true);  
+    $execution_time = ($time_end - $time_start)/60;
+    echo 'Total Execution Time: '.$execution_time.' secs' . PHP_EOL;  
+    #echo 'Usage: ' . round(memory_get_usage() / 1024) . 'KB of memory' . PHP_EOL;
 
     function outputFilesGlob (string $filePath){
         foreach(glob("json-files/*.json") as $file){            
@@ -37,7 +41,7 @@
     }
 
     function readJsonFile (string $file){
-        echo basename($file) . " (size: " . filesize($file) . " bytes)" . PHP_EOL;
+        #echo basename($file) . " (size: " . filesize($file) . " bytes)" . PHP_EOL;
         $content = file_get_contents($file);
 
         return json_decode($content);     

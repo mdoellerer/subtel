@@ -1,0 +1,20 @@
+{
+    "name": "doellerer/subtel",
+    "description": "Code task for Job Application",
+    "type": "project",
+    "license": "free",
+    "authors": [
+        {
+            "name": "Marcos Doellerer",
+            "email": "mdollerer@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Mdoellerer\\Subtel\\": "src/"
+        }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    }
+}
