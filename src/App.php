@@ -5,14 +5,8 @@ namespace Mdoellerer\Subtel;
 
 class App
 {
-    public function __construct(string $customerGUID = null)
-    {       
-        //The following IF is just because we are in a DEMO software, this was the example
-        // used for check all cases, I only left this here so it is quicker to test and to show.
-        if (is_null($customerGUID)){
-            $customerGUID = 'c5f987b9-52da-4358-a425-760262482fc0';
-        }
-        
+    public function __construct(string $customerGUID)
+    {              
         $jsonFilesPath = dirname(__FILE__)  . '//json-files//';
         $time_start = microtime(true); 
         $fileServices = new FileServices();    
@@ -37,7 +31,7 @@ class App
     }
 
 
-    private function printOutReport(string $customerGUID, ReportOrdersTotalsForCustomers $reportOrders){
+    private function printOutReport(string $customerGUID, ReportOrdersTotalsForCustomer $reportOrders){
         $result = "Customer {$customerGUID} total amount of " 
             . $reportOrders->getTotalAmount() . ' in ' 
             . $reportOrders->getNumberOfOrders() . ' orders. ' . PHP_EOL;
