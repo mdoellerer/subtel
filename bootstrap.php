@@ -3,7 +3,7 @@
 
     require 'vendor/autoload.php';
 
-    if (!is_null($argv[1])){
+    if (isset($argv[1])){
         $guid = $argv[1];
     }
     //The following ELSE is just because we are in a DEMO software, this was the example

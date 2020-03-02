@@ -8,7 +8,7 @@ class App
     public function __construct(string $customerGUID)
     {              
         $jsonFilesPath = dirname(__FILE__)  . '//json-files//';
-        $time_start = microtime(true); 
+        $timeStart = microtime(true); 
         $fileServices = new FileServices();    
         $files = $fileServices->getFilesCollection($jsonFilesPath);
     
@@ -27,7 +27,7 @@ class App
         }
         
         $this->printOutReport($customerGUID, $reportOrders);      
-        $this->printOutExecutionTime($time_start);
+        $this->printOutExecutionTime($timeStart);
     }
 
 
@@ -41,9 +41,9 @@ class App
 
     
     private function printOutExecutionTime($initialMicrotime){
-        $time_end = microtime(true);  
-        $execution_time = ($time_end - $initialMicrotime)/60;
-        echo 'Total Execution Time: '.$execution_time.' secs' . PHP_EOL;  
+        $timeEnd = microtime(true);  
+        $executionTime = ($timeEnd - $initialMicrotime)/60;
+        echo 'Total Execution Time: '.$executionTime.' secs' . PHP_EOL;  
     }
 
     
