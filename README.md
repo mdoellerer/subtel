@@ -1,10 +1,3 @@
-# SUBTEL
-Test for developer job
-
-- Installation
-
-
-
 # INSTALLATION
 
 ## Requirements
